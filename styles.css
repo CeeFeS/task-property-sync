@@ -1,0 +1,61 @@
+/* TaskPropertyPlugin Styles */
+
+.tpp-mapping-container {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background-color: var(--background-secondary);
+}
+
+.tpp-mapping-container .setting-item {
+  border-top: none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.tpp-mapping-container .setting-item:first-child {
+  padding-top: 0;
+}
+
+.tpp-mapping-container .setting-item-name {
+  font-weight: 600;
+}
+
+/* Conditions section */
+.tpp-conditions-section {
+  margin-top: 8px;
+}
+
+.tpp-conditions-section > .setting-item .setting-item-name {
+  font-weight: 700;
+  color: var(--text-accent);
+}
+
+.tpp-condition-row {
+  border: 1px dashed var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 6px;
+  margin-left: 12px;
+  background-color: var(--background-primary);
+}
+
+.tpp-condition-row .setting-item {
+  border-top: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.tpp-condition-row .setting-item:first-child {
+  padding-top: 0;
+}
+
+.tpp-condition-row .setting-item-name {
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.tpp-condition-row .setting-item-description {
+  font-size: 0.85em;
+}
