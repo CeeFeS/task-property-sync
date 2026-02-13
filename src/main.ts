@@ -41,9 +41,9 @@ export default class TaskPropertyPlugin extends Plugin {
         const activeFile = this.app.workspace.getActiveFile();
         if (activeFile) {
           await this.processor.processFile(activeFile);
-          new Notice("TaskPropertyPlugin: Current file processed.");
+          new Notice("Task Property Sync: Current file processed.");
         } else {
-          new Notice("TaskPropertyPlugin: No active file.");
+          new Notice("Task Property Sync: No active file.");
         }
       },
     });
@@ -53,7 +53,7 @@ export default class TaskPropertyPlugin extends Plugin {
       name: "Process all files",
       callback: async () => {
         const count = await this.processor.processAllFiles();
-        new Notice(`TaskPropertyPlugin: Processed ${count} files.`);
+        new Notice(`Task Property Sync: Processed ${count} files.`);
       },
     });
 
@@ -103,7 +103,7 @@ export default class TaskPropertyPlugin extends Plugin {
       await this.processor.processFile(file);
     } catch (error) {
       console.error(
-        `TaskPropertyPlugin: Error processing file ${file.path}:`,
+        `Task Property Sync: Error processing file ${file.path}:`,
         error
       );
     } finally {

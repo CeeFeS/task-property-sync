@@ -1,6 +1,6 @@
 {
-  "id": "task-property-plugin",
-  "name": "TaskPropertyPlugin",
+  "id": "task-property-sync",
+  "name": "Task Property Sync",
   "version": "1.0.0",
   "minAppVersion": "1.4.0",
   "description": "Sync task properties from the Tasks plugin into frontmatter fields with configurable operations and conditions.",

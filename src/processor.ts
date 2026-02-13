@@ -100,7 +100,7 @@ export class TaskPropertyProcessor {
         await updateFrontmatterProperties(this.app, file, updates);
       } catch (error) {
         console.error(
-          `TaskPropertyPlugin: Error updating frontmatter for ${file.path}:`,
+          `Task Property Sync: Error updating frontmatter for ${file.path}:`,
           error
         );
       }

@@ -1,4 +1,4 @@
-# TaskPropertyPlugin
+# Task Property Sync
 
 Sync task properties from the [Tasks](https://github.com/obsidian-tasks-group/obsidian-tasks) plugin into frontmatter fields with configurable operations and conditions.
 
@@ -6,17 +6,17 @@ Sync task properties from the [Tasks](https://github.com/obsidian-tasks-group/ob
 
 The Obsidian Tasks plugin stores task metadata (due dates, scheduled dates, priority, status, etc.) inline using emoji markers. This works great for managing tasks, but it means that **frontmatter properties** — which Obsidian uses for sorting, filtering, and displaying metadata — don't automatically reflect your task data.
 
-**TaskPropertyPlugin bridges this gap.** It reads the Tasks plugin metadata from your notes and writes computed values into frontmatter properties — automatically, in real-time.
+**Task Property Sync bridges this gap.** It reads the Tasks plugin metadata from your notes and writes computed values into frontmatter properties — automatically, in real-time.
 
 ### Perfect for Obsidian Bases
 
-This plugin is especially powerful when combined with **Obsidian Bases** (database views). Since Bases reads frontmatter properties to build tables, filters, and views, TaskPropertyPlugin lets you effectively **combine the Tasks plugin with Bases**:
+This plugin is especially powerful when combined with **Obsidian Bases** (database views). Since Bases reads frontmatter properties to build tables, filters, and views, Task Property Sync lets you effectively **combine the Tasks plugin with Bases**:
 
 - Create a Bases table showing all project notes with their earliest scheduled date, progress percentage, or task counts — all pulled automatically from your tasks.
 - Sort and filter project notes by due dates, completion status, or any other task property.
 - Build dashboards that always stay in sync with your actual task data.
 
-Without this plugin, you would need to manually update frontmatter every time you change a task. TaskPropertyPlugin does this for you.
+Without this plugin, you would need to manually update frontmatter every time you change a task. Task Property Sync does this for you.
 
 ## Features
 
@@ -37,7 +37,7 @@ Without this plugin, you would need to manually update frontmatter every time yo
 ## Requirements
 
 - **Obsidian** v1.4.0 or later
-- **[Tasks Plugin](https://github.com/obsidian-tasks-group/obsidian-tasks)** — This plugin reads the emoji-based task metadata that the Tasks plugin creates. Tasks must use the standard emoji format:
+- **[Tasks](https://github.com/obsidian-tasks-group/obsidian-tasks)** — This plugin reads the emoji-based task metadata that the Tasks plugin creates. Tasks must use the standard emoji format:
   - `📅 2025-03-15` — Due date
   - `⏳ 2025-03-10` — Scheduled date
   - `🛫 2025-03-01` — Start date
@@ -51,13 +51,13 @@ Without this plugin, you would need to manually update frontmatter every time yo
 ### From Obsidian Community Plugins (recommended)
 
 1. Open **Settings** > **Community Plugins** > **Browse**
-2. Search for **TaskPropertyPlugin**
+2. Search for **Task Property Sync**
 3. Click **Install**, then **Enable**
 
 ### Manual Installation
 
-1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/CeeFeS/task-property-plugin/releases/latest).
-2. Create a folder `task-property-plugin` inside your vault's `.obsidian/plugins/` directory.
+1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/CeeFeS/task-property-sync/releases/latest).
+2. Create a folder `task-property-sync` inside your vault's `.obsidian/plugins/` directory.
 3. Copy the downloaded files into that folder.
 4. Restart Obsidian and enable the plugin under **Settings** > **Community Plugins**.
 
@@ -196,8 +196,8 @@ Combined with Bases, this gives you a fully automated project dashboard without 
 
 Open the command palette (`Ctrl/Cmd + P`) and search for:
 
-- **TaskPropertyPlugin: Process current file** — Process only the active file.
-- **TaskPropertyPlugin: Process all files** — Process all markdown files in the vault (respecting excluded folders).
+- **Task Property Sync: Process current file** — Process only the active file.
+- **Task Property Sync: Process all files** — Process all markdown files in the vault (respecting excluded folders).
 
 ## Supported Task Properties
 
@@ -234,4 +234,4 @@ This plugin is released under the [MIT License](LICENSE).
 
 ## Contributing
 
-Contributions are welcome! Feel free to open issues or submit pull requests on [GitHub](https://github.com/CeeFeS/task-property-plugin).
+Contributions are welcome! Feel free to open issues or submit pull requests on [GitHub](https://github.com/CeeFeS/task-property-sync).

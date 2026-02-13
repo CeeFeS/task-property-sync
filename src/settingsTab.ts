@@ -91,7 +91,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     containerEl.empty();
 
     // ──────────────── Header ────────────────
-    containerEl.createEl("h1", { text: "TaskPropertyPlugin Settings" });
+    containerEl.createEl("h1", { text: "Task Property Sync Settings" });
     containerEl.createEl("p", {
       text: "Automatically sync task properties from the Tasks plugin into frontmatter properties of your markdown files.",
       cls: "setting-item-description",
@@ -141,7 +141,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .addButton((button) =>
         button.setButtonText("Process All Files").onClick(async () => {
           const count = await this.plugin.processor.processAllFiles();
-          new Notice(`TaskPropertyPlugin: Processed ${count} files.`);
+          new Notice(`Task Property Sync: Processed ${count} files.`);
         })
       );
 
