@@ -7,19 +7,19 @@ import { ParsedTask } from "./types";
 const TASK_CHECKBOX_REGEX = /^(\s*[-*]\s*\[(.)\])\s*(.*)/;
 
 // Tasks plugin emoji format
-const DUE_DATE_REGEX = /📅\s*(\d{4}-\d{2}-\d{2})/;
-const SCHEDULED_DATE_REGEX = /⏳\s*(\d{4}-\d{2}-\d{2})/;
-const START_DATE_REGEX = /🛫\s*(\d{4}-\d{2}-\d{2})/;
-const CREATED_DATE_REGEX = /➕\s*(\d{4}-\d{2}-\d{2})/;
-const DONE_DATE_REGEX = /✅\s*(\d{4}-\d{2}-\d{2})/;
-const RECURRENCE_REGEX = /🔁\s*([^📅⏳🛫➕✅⏫🔼🔽⏬🆔]*)/;
+const DUE_DATE_REGEX = /📅\s*(\d{4}-\d{2}-\d{2})/u;
+const SCHEDULED_DATE_REGEX = /⏳\s*(\d{4}-\d{2}-\d{2})/u;
+const START_DATE_REGEX = /🛫\s*(\d{4}-\d{2}-\d{2})/u;
+const CREATED_DATE_REGEX = /➕\s*(\d{4}-\d{2}-\d{2})/u;
+const DONE_DATE_REGEX = /✅\s*(\d{4}-\d{2}-\d{2})/u;
+const RECURRENCE_REGEX = /🔁\s*([^📅⏳🛫➕✅⏫🔼🔽⏬🆔]*)/u;
 
 // Priority emojis (Tasks plugin)
-const PRIORITY_HIGHEST_REGEX = /🔺/;
-const PRIORITY_HIGH_REGEX = /⏫/;
-const PRIORITY_MEDIUM_REGEX = /🔼/;
-const PRIORITY_LOW_REGEX = /🔽/;
-const PRIORITY_LOWEST_REGEX = /⏬/;
+const PRIORITY_HIGHEST_REGEX = /🔺/u;
+const PRIORITY_HIGH_REGEX = /⏫/u;
+const PRIORITY_MEDIUM_REGEX = /🔼/u;
+const PRIORITY_LOW_REGEX = /🔽/u;
+const PRIORITY_LOWEST_REGEX = /⏬/u;
 
 /**
  * Parses all tasks from a markdown file content.

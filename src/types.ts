@@ -148,11 +148,11 @@ export interface ParsedTask {
  * Human-readable labels for task properties.
  */
 export const TASK_PROPERTY_LABELS: Record<TaskProperty, string> = {
-  due_date: "Due Date",
-  scheduled_date: "Scheduled Date",
-  start_date: "Start Date",
-  created_date: "Created Date",
-  done_date: "Done Date",
+  due_date: "Due date",
+  scheduled_date: "Scheduled date",
+  start_date: "Start date",
+  created_date: "Created date",
+  done_date: "Done date",
   recurrence: "Recurrence",
   priority: "Priority",
   status: "Status",
@@ -166,13 +166,13 @@ export const OPERATION_LABELS: Record<OperationType, string> = {
   min: "Minimum (earliest date / smallest value)",
   max: "Maximum (latest date / largest value)",
   count: "Count (tasks with this property set)",
-  count_all: "Count All Tasks",
-  count_done: "Count Done Tasks",
-  count_open: "Count Open Tasks",
-  percentage_done: "Percentage Done (%)",
+  count_all: "Count all tasks",
+  count_done: "Count done tasks",
+  count_open: "Count open tasks",
+  percentage_done: "Percentage done (%)",
   list: "List (comma-separated values)",
-  first: "First Occurrence",
-  last: "Last Occurrence",
+  first: "First occurrence",
+  last: "Last occurrence",
 };
 
 /**
@@ -180,13 +180,13 @@ export const OPERATION_LABELS: Record<OperationType, string> = {
  */
 export const CONDITION_OPERATOR_LABELS: Record<ConditionOperator, string> = {
   equals: "Equals",
-  not_equals: "Not Equals",
+  not_equals: "Not equals",
   contains: "Contains",
-  not_contains: "Not Contains",
-  is_empty: "Is Empty",
-  is_not_empty: "Is Not Empty",
-  greater_than: "Greater Than (date: after)",
-  less_than: "Less Than (date: before)",
-  greater_or_equal: "Greater or Equal",
-  less_or_equal: "Less or Equal",
+  not_contains: "Not contains",
+  is_empty: "Is empty",
+  is_not_empty: "Is not empty",
+  greater_than: "Greater than (date: after)",
+  less_than: "Less than (date: before)",
+  greater_or_equal: "Greater or equal",
+  less_or_equal: "Less or equal",
 };

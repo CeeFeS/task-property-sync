@@ -25,6 +25,8 @@
 /* Conditions section */
 .tpp-conditions-section {
   margin-top: 8px;
+  border-top: 1px solid var(--background-modifier-border);
+  padding-top: 8px;
 }
 
 .tpp-conditions-section > .setting-item .setting-item-name {

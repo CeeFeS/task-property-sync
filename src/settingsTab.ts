@@ -6,7 +6,6 @@ import {
 } from "obsidian";
 import type TaskPropertyPlugin from "./main";
 import {
-  TaskPropertyPluginSettings,
   DirectMapping,
   OperationMapping,
   TaskProperty,
@@ -91,14 +90,15 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     containerEl.empty();
 
     // ──────────────── Header ────────────────
-    containerEl.createEl("h1", { text: "Task Property Sync Settings" });
-    containerEl.createEl("p", {
-      text: "Automatically sync task properties from the Tasks plugin into frontmatter properties of your markdown files.",
-      cls: "setting-item-description",
-    });
+    new Setting(containerEl)
+      .setName("Task Property Sync settings")
+      .setDesc("Automatically sync task properties from the Tasks plugin into frontmatter properties of your markdown files.")
+      .setHeading();
 
     // ──────────────── General Settings ────────────────
-    containerEl.createEl("h2", { text: "General" });
+    new Setting(containerEl)
+      .setName("General")
+      .setHeading();
 
     new Setting(containerEl)
       .setName("Process on file modify")
@@ -139,21 +139,20 @@ export class TaskPropertySettingTab extends PluginSettingTab {
         "Manually trigger processing of all markdown files in the vault (respecting excluded folders)."
       )
       .addButton((button) =>
-        button.setButtonText("Process All Files").onClick(async () => {
+        button.setButtonText("Process all files").onClick(async () => {
           const count = await this.plugin.processor.processAllFiles();
           new Notice(`Task Property Sync: Processed ${count} files.`);
         })
       );
 
     // ──────────────── Excluded Folders ────────────────
-    containerEl.createEl("h2", { text: "Excluded Folders" });
-    containerEl.createEl("p", {
-      text: "Files in these folders will not be processed. Enter folder paths relative to the vault root, one per line.",
-      cls: "setting-item-description",
-    });
-
     new Setting(containerEl)
       .setName("Excluded folders")
+      .setDesc("Files in these folders will not be processed. Enter folder paths relative to the vault root, one per line.")
+      .setHeading();
+
+    new Setting(containerEl)
+      .setName("Folder paths")
       .setDesc("Folder paths to exclude (one per line)")
       .addTextArea((textArea) => {
         textArea
@@ -171,16 +170,15 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       });
 
     // ──────────────── Direct Mappings ────────────────
-    containerEl.createEl("h2", { text: "Direct Property Mappings" });
-    containerEl.createEl("p", {
-      text: "Map a task property directly to a frontmatter property. The first matching value found in the file will be used.",
-      cls: "setting-item-description",
-    });
+    new Setting(containerEl)
+      .setName("Direct property mappings")
+      .setDesc("Map a task property directly to a frontmatter property. The first matching value found in the file will be used.")
+      .setHeading();
 
     // Add button for new direct mapping
     new Setting(containerEl).addButton((button) =>
       button
-        .setButtonText("+ Add Direct Mapping")
+        .setButtonText("+ Add direct mapping")
         .setCta()
         .onClick(async () => {
           const newMapping: DirectMapping = {
@@ -202,16 +200,15 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     }
 
     // ──────────────── Operation Mappings ────────────────
-    containerEl.createEl("h2", { text: "Operation Mappings" });
-    containerEl.createEl("p", {
-      text: "Apply an operation (min, max, count, percentage, etc.) across all tasks in a file and write the result to a frontmatter property.",
-      cls: "setting-item-description",
-    });
+    new Setting(containerEl)
+      .setName("Operation mappings")
+      .setDesc("Apply an operation (min, max, count, percentage, etc.) across all tasks in a file and write the result to a frontmatter property.")
+      .setHeading();
 
     // Add button for new operation mapping
     new Setting(containerEl).addButton((button) =>
       button
-        .setButtonText("+ Add Operation Mapping")
+        .setButtonText("+ Add operation mapping")
         .setCta()
         .onClick(async () => {
           const newMapping: OperationMapping = {
@@ -243,16 +240,8 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     const mapping = this.plugin.settings.directMappings[index];
     const wrapper = containerEl.createDiv({ cls: "tpp-mapping-container" });
 
-    // Styling
-    wrapper.style.border = "1px solid var(--background-modifier-border)";
-    wrapper.style.borderRadius = "8px";
-    wrapper.style.padding = "12px";
-    wrapper.style.marginBottom = "10px";
-    wrapper.style.backgroundColor = "var(--background-secondary)";
-
-    // Header row with enable toggle and delete button
     new Setting(wrapper)
-      .setName(`Direct Mapping #${index + 1}`)
+      .setName(`Direct mapping #${index + 1}`)
       .addToggle((toggle) =>
         toggle
           .setTooltip("Enable/disable this mapping")
@@ -331,16 +320,8 @@ export class TaskPropertySettingTab extends PluginSettingTab {
 
     const wrapper = containerEl.createDiv({ cls: "tpp-mapping-container" });
 
-    // Styling
-    wrapper.style.border = "1px solid var(--background-modifier-border)";
-    wrapper.style.borderRadius = "8px";
-    wrapper.style.padding = "12px";
-    wrapper.style.marginBottom = "10px";
-    wrapper.style.backgroundColor = "var(--background-secondary)";
-
-    // Header row
     new Setting(wrapper)
-      .setName(`Operation Mapping #${index + 1}`)
+      .setName(`Operation mapping #${index + 1}`)
       .addToggle((toggle) =>
         toggle
           .setTooltip("Enable/disable this mapping")
@@ -430,9 +411,6 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     mapping: OperationMapping
   ): void {
     const condSection = parentEl.createDiv({ cls: "tpp-conditions-section" });
-    condSection.style.marginTop = "8px";
-    condSection.style.borderTop = "1px solid var(--background-modifier-border)";
-    condSection.style.paddingTop = "8px";
 
     // Conditions header with logic toggle and add button
     const condHeaderSetting = new Setting(condSection)
@@ -440,14 +418,14 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .setDesc(
         mapping.conditions.length === 0
           ? "No conditions — all tasks will be included. Add conditions to filter which tasks are considered."
-          : `${mapping.conditions.length} condition(s) applied. Only tasks matching ${mapping.conditionLogic === "AND" ? "ALL" : "ANY"} conditions are included.`
+          : `${mapping.conditions.length} condition(s) applied. Only tasks matching ${mapping.conditionLogic === "AND" ? "all" : "any"} conditions are included.`
       );
 
     // Logic toggle (only show if there are 2+ conditions)
     if (mapping.conditions.length >= 2) {
       condHeaderSetting.addDropdown((dropdown) => {
-        dropdown.addOption("AND", "Match ALL (AND)");
-        dropdown.addOption("OR", "Match ANY (OR)");
+        dropdown.addOption("AND", "Match all (AND)");
+        dropdown.addOption("OR", "Match any (OR)");
         dropdown.setValue(mapping.conditionLogic);
         dropdown.onChange(async (value) => {
           mapping.conditionLogic = value as ConditionLogic;
@@ -458,7 +436,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     }
 
     condHeaderSetting.addButton((button) =>
-      button.setButtonText("+ Add Condition").onClick(async () => {
+      button.setButtonText("+ Add condition").onClick(async () => {
         const newCondition: Condition = {
           id: generateId(),
           property: "status",
@@ -487,12 +465,6 @@ export class TaskPropertySettingTab extends PluginSettingTab {
   ): void {
     const condition = mapping.conditions[condIndex];
     const condWrapper = parentEl.createDiv({ cls: "tpp-condition-row" });
-    condWrapper.style.border = "1px dashed var(--background-modifier-border)";
-    condWrapper.style.borderRadius = "6px";
-    condWrapper.style.padding = "8px";
-    condWrapper.style.marginBottom = "6px";
-    condWrapper.style.marginLeft = "12px";
-    condWrapper.style.backgroundColor = "var(--background-primary)";
 
     // Condition header with delete button
     new Setting(condWrapper)
@@ -553,7 +525,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
           dropdown.addOption(" ", "Open (space)");
           dropdown.addOption("x", "Done (x)");
           dropdown.addOption("X", "Done (X)");
-          dropdown.addOption("/", "In Progress (/)");
+          dropdown.addOption("/", "In progress (/)");
           dropdown.addOption("-", "Cancelled (-)");
           // Also allow custom text
           dropdown.setValue(condition.value || " ");

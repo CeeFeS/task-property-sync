@@ -80,7 +80,7 @@ export default class TaskPropertyPlugin extends Plugin {
 
         // Small delay to let the file fully load
         setTimeout(() => {
-          this.handleFileChange(file);
+          void this.handleFileChange(file);
         }, 500);
       })
     );
