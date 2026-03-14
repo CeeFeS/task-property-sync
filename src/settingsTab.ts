@@ -89,17 +89,6 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    // ──────────────── Header ────────────────
-    new Setting(containerEl)
-      .setName("Task Property Sync settings")
-      .setDesc("Automatically sync task properties from the Tasks plugin into frontmatter properties of your markdown files.")
-      .setHeading();
-
-    // ──────────────── General Settings ────────────────
-    new Setting(containerEl)
-      .setName("General")
-      .setHeading();
-
     new Setting(containerEl)
       .setName("Process on file modify")
       .setDesc(
@@ -141,7 +130,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .addButton((button) =>
         button.setButtonText("Process all files").onClick(async () => {
           const count = await this.plugin.processor.processAllFiles();
-          new Notice(`Task Property Sync: Processed ${count} files.`);
+          new Notice(`Processed ${count} files.`);
         })
       );
 
@@ -156,7 +145,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .setDesc("Folder paths to exclude (one per line)")
       .addTextArea((textArea) => {
         textArea
-          .setPlaceholder("templates/\narchive/old-notes/")
+          .setPlaceholder("templates\narchive/old-notes")
           .setValue(this.plugin.settings.excludedFolders.join("\n"))
           .onChange(async (value) => {
             this.plugin.settings.excludedFolders = value
@@ -178,7 +167,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     // Add button for new direct mapping
     new Setting(containerEl).addButton((button) =>
       button
-        .setButtonText("+ Add direct mapping")
+        .setButtonText("Add direct mapping")
         .setCta()
         .onClick(async () => {
           const newMapping: DirectMapping = {
@@ -208,7 +197,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     // Add button for new operation mapping
     new Setting(containerEl).addButton((button) =>
       button
-        .setButtonText("+ Add operation mapping")
+        .setButtonText("Add operation mapping")
         .setCta()
         .onClick(async () => {
           const newMapping: OperationMapping = {
@@ -283,7 +272,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .setDesc("The name of the frontmatter property to write to")
       .addText((text) =>
         text
-          .setPlaceholder("e.g., due")
+          .setPlaceholder("due")
           .setValue(mapping.frontmatterKey)
           .onChange(async (value) => {
             mapping.frontmatterKey = value.trim();
@@ -378,7 +367,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .setDesc("The name of the frontmatter property to write the result to")
       .addText((text) =>
         text
-          .setPlaceholder("e.g., scheduled_task")
+          .setPlaceholder("scheduled_task")
           .setValue(mapping.frontmatterKey)
           .onChange(async (value) => {
             mapping.frontmatterKey = value.trim();
@@ -424,8 +413,8 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     // Logic toggle (only show if there are 2+ conditions)
     if (mapping.conditions.length >= 2) {
       condHeaderSetting.addDropdown((dropdown) => {
-        dropdown.addOption("AND", "Match all (AND)");
-        dropdown.addOption("OR", "Match any (OR)");
+        dropdown.addOption("AND", "Match all");
+        dropdown.addOption("OR", "Match any");
         dropdown.setValue(mapping.conditionLogic);
         dropdown.onChange(async (value) => {
           mapping.conditionLogic = value as ConditionLogic;
@@ -436,7 +425,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     }
 
     condHeaderSetting.addButton((button) =>
-      button.setButtonText("+ Add condition").onClick(async () => {
+      button.setButtonText("Add condition").onClick(async () => {
         const newCondition: Condition = {
           id: generateId(),
           property: "status",
@@ -522,11 +511,11 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       // For status, offer a dropdown with common values
       if (condition.property === "status") {
         valueSetting.addDropdown((dropdown) => {
-          dropdown.addOption(" ", "Open (space)");
-          dropdown.addOption("x", "Done (x)");
-          dropdown.addOption("X", "Done (X)");
-          dropdown.addOption("/", "In progress (/)");
-          dropdown.addOption("-", "Cancelled (-)");
+          dropdown.addOption(" ", "Open [ ]");
+          dropdown.addOption("x", "Done [x]");
+          dropdown.addOption("X", "Done [X]");
+          dropdown.addOption("/", "In progress [/]");
+          dropdown.addOption("-", "Cancelled [-]");
           // Also allow custom text
           dropdown.setValue(condition.value || " ");
           dropdown.onChange(async (value) => {
@@ -594,7 +583,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
   private getValuePlaceholder(property: TaskProperty): string {
     const isDateProp = ["due_date", "scheduled_date", "start_date", "created_date", "done_date"].includes(property);
     if (isDateProp) return "YYYY-MM-DD";
-    if (property === "recurrence") return "e.g., every week";
+    if (property === "recurrence") return "every week";
     return "value";
   }
 }
