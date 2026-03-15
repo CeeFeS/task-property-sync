@@ -125,7 +125,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     new Setting(containerEl)
       .setName("Process all files now")
       .setDesc(
-        "Manually trigger processing of all markdown files in the vault (respecting excluded folders)."
+        "Trigger processing of all markdown files in the vault. Excluded folders are respected."
       )
       .addButton((button) =>
         button.setButtonText("Process all files").onClick(async () => {
@@ -145,7 +145,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .setDesc("Folder paths to exclude (one per line)")
       .addTextArea((textArea) => {
         textArea
-          .setPlaceholder("templates\narchive/old-notes")
+          .setPlaceholder("Templates\nArchive/old-notes")
           .setValue(this.plugin.settings.excludedFolders.join("\n"))
           .onChange(async (value) => {
             this.plugin.settings.excludedFolders = value
@@ -272,7 +272,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .setDesc("The name of the frontmatter property to write to")
       .addText((text) =>
         text
-          .setPlaceholder("due")
+          .setPlaceholder("Due")
           .setValue(mapping.frontmatterKey)
           .onChange(async (value) => {
             mapping.frontmatterKey = value.trim();
@@ -367,7 +367,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .setDesc("The name of the frontmatter property to write the result to")
       .addText((text) =>
         text
-          .setPlaceholder("scheduled_task")
+          .setPlaceholder("Scheduled_task")
           .setValue(mapping.frontmatterKey)
           .onChange(async (value) => {
             mapping.frontmatterKey = value.trim();
@@ -511,11 +511,11 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       // For status, offer a dropdown with common values
       if (condition.property === "status") {
         valueSetting.addDropdown((dropdown) => {
-          dropdown.addOption(" ", "Open [ ]");
-          dropdown.addOption("x", "Done [x]");
-          dropdown.addOption("X", "Done [X]");
-          dropdown.addOption("/", "In progress [/]");
-          dropdown.addOption("-", "Cancelled [-]");
+          dropdown.addOption(" ", "Open");
+          dropdown.addOption("x", "Done");
+          dropdown.addOption("X", "Done (uppercase)");
+          dropdown.addOption("/", "In progress");
+          dropdown.addOption("-", "Cancelled");
           // Also allow custom text
           dropdown.setValue(condition.value || " ");
           dropdown.onChange(async (value) => {
@@ -583,7 +583,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
   private getValuePlaceholder(property: TaskProperty): string {
     const isDateProp = ["due_date", "scheduled_date", "start_date", "created_date", "done_date"].includes(property);
     if (isDateProp) return "YYYY-MM-DD";
-    if (property === "recurrence") return "every week";
-    return "value";
+    if (property === "recurrence") return "Every week";
+    return "Value";
   }
 }
