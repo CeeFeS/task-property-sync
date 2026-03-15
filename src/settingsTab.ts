@@ -125,7 +125,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     new Setting(containerEl)
       .setName("Process all files now")
       .setDesc(
-        "Trigger processing of all markdown files in the vault. Excluded folders are respected."
+        "Trigger processing of all markdown files in the vault, excluding configured folders."
       )
       .addButton((button) =>
         button.setButtonText("Process all files").onClick(async () => {
@@ -145,7 +145,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
       .setDesc("Folder paths to exclude (one per line)")
       .addTextArea((textArea) => {
         textArea
-          .setPlaceholder("Templates\nArchive/old-notes")
+          .setPlaceholder("")
           .setValue(this.plugin.settings.excludedFolders.join("\n"))
           .onChange(async (value) => {
             this.plugin.settings.excludedFolders = value
