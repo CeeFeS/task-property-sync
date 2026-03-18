@@ -125,7 +125,7 @@ export class TaskPropertySettingTab extends PluginSettingTab {
     new Setting(containerEl)
       .setName("Process all files now")
       .setDesc(
-        "Trigger processing of all markdown files in the vault, excluding configured folders."
+        "Trigger processing of all Markdown files in the vault, excluding configured folders."
       )
       .addButton((button) =>
         button.setButtonText("Process all files").onClick(async () => {

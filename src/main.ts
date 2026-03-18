@@ -118,8 +118,8 @@ export default class TaskPropertyPlugin extends Plugin {
    * Loads settings from Obsidian's data store.
    */
   async loadSettings(): Promise<void> {
-    const loadedData = await this.loadData();
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, loadedData);
+    const loadedData = (await this.loadData()) as Partial<TaskPropertyPluginSettings> | null;
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, loadedData ?? {});
 
     // Ensure arrays exist (in case of partial data)
     if (!Array.isArray(this.settings.directMappings)) {

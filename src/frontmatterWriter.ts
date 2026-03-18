@@ -21,10 +21,9 @@ export async function updateFrontmatterProperty(
 
   let updated = false;
 
-  await app.fileManager.processFrontMatter(file, (frontmatter) => {
+  await app.fileManager.processFrontMatter(file, (frontmatter: Record<string, unknown>) => {
     const existingValue = frontmatter[key];
 
-    // If overwrite is disabled and a value already exists, skip
     if (
       !overwriteExisting &&
       existingValue !== undefined &&
@@ -34,7 +33,6 @@ export async function updateFrontmatterProperty(
       return;
     }
 
-    // Only update if the value is actually different
     const newValue = coerceValue(value);
     if (frontmatter[key] !== newValue) {
       frontmatter[key] = newValue;
@@ -59,13 +57,12 @@ export async function updateFrontmatterProperties(
 ): Promise<boolean> {
   let updated = false;
 
-  await app.fileManager.processFrontMatter(file, (frontmatter) => {
+  await app.fileManager.processFrontMatter(file, (frontmatter: Record<string, unknown>) => {
     for (const update of updates) {
       if (update.value === null || update.value === undefined) continue;
 
       const existingValue = frontmatter[update.key];
 
-      // If overwrite is disabled and a value already exists, skip
       if (
         !update.overwriteExisting &&
         existingValue !== undefined &&
